@@ -18,7 +18,7 @@ public class DayNameDao {
      *
      * @return
      */
-    public List<DayName> findAll() {
+    static public List<DayName> findAll() {
         List<DayName> DayNameList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_DAYNAMES_QUERY);
