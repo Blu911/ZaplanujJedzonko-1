@@ -25,14 +25,18 @@ public class LoginServlet extends HttpServlet {
 /** Checking if inserted email and password is in database
  *  If yes opening session and redirecting to Dashboard
  *  If not showing LoginPage**/
+
         List<Admin> adminList = AdminDao.findAll();
+
         for (Admin admin : adminList) {
             if (Objects.equals(admin.getEmail(), email) && BCrypt.checkpw(password, admin.getPassword())) {
-                response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
+                HttpSession session = request.getSession();
+                session.setAttribute("user", email);
+                response.sendRedirect(request.getContextPath() + "/app/dashboard");
                 return;
             }
         }
-        doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -127,12 +127,10 @@ public class AdminDao {
      */
     public static void delete(Integer adminId) {
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_ADMIN_QUERY);) {
+             PreparedStatement statement = connection.prepareStatement(DELETE_ADMIN_QUERY)) {
             statement.setInt(1, adminId);
-            statement.executeUpdate();
 
-            boolean deleted = statement.execute();
-            if (!deleted) {
+            if (statement.executeUpdate() == 0) {
                 throw new NotFoundException("Product not found");
             }
         } catch (Exception e) {
