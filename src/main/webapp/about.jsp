@@ -24,6 +24,8 @@
 
 <h1 align="center">About</h1>
 
+<%@include file="components/story.jsp"%>
+<%@include file="components/details.jsp"%>
 <%@include file="components/lastinfo.jsp"%>
 <%@include file="components/footer.jsp"%>
 
