@@ -1,6 +1,7 @@
 package pl.coderslab.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Recipe {
 
@@ -11,13 +12,13 @@ public class Recipe {
 
 
 
-    private Date created;
-    private Date updated;
+    private Timestamp created;
+    private Timestamp updated;
     private int preparation_time;
     private int admin_id;
     public Recipe() {}
 
-    public Recipe(String name, String ingredients, String description, Date created, Date updated, int preparation_time, int admin_id) {
+    public Recipe(String name, String ingredients, String description, Timestamp created, Timestamp updated, int preparation_time, int admin_id) {
         this.name = name;
         this.ingredients = ingredients;
         this.description = description;
@@ -33,9 +34,9 @@ public class Recipe {
                 ", preparation_time" + preparation_time + ", admin_id=" + admin_id + "]";
     }
 
-    public String getIngrediens() { return ingredients; }
+    public String getIngredients() { return ingredients; }
 
-    public void setIngrediens(String ingrediens) { this.ingredients = ingrediens; }
+    public void setIngredients(String ingredients) { this.ingredients = ingredients; }
 
 
 
@@ -74,19 +75,19 @@ public class Recipe {
     public void setAdmin_id(int admin_id) {
         this.admin_id = admin_id;
     }
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getUpdated() {
+    public Timestamp getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
+    public void setUpdated(Timestamp updated) {
         this.updated = updated;
     }
 }
