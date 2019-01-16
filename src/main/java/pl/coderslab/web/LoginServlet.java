@@ -23,12 +23,12 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
 /** Checking if inserted email and password is in database
- *  If yes opening session and redirecting to HomePage
+ *  If yes opening session and redirecting to Dashboard
  *  If not showing LoginPage**/
         List<Admin> adminList = AdminDao.findAll();
         for (Admin admin : adminList) {
             if (Objects.equals(admin.getEmail(), email) && BCrypt.checkpw(password, admin.getPassword())) {
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
+                response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
                 return;
             }
         }
