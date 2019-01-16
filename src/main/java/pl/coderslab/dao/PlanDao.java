@@ -120,10 +120,8 @@ public class PlanDao {
 		try (Connection connection = DbUtil.getConnection();
 		     PreparedStatement statement = connection.prepareStatement(DELETE_PLAN_QUERY);) {
 			statement.setInt(1, planId);
-			statement.executeUpdate();
 
-			boolean deleted = statement.execute();
-			if (!deleted) {
+			if (statement.executeUpdate() == 0) {
 				throw new NotFoundException("Plan not found");
 			}
 

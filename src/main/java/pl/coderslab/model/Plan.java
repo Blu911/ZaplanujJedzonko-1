@@ -9,21 +9,19 @@ public class Plan {
 	private String description;
 	private Date created;
 	private int admin_id;
+	public Plan() {}
+
+	public Plan(String name, String description, Date created, int admin_id) {
+		this.name = name;
+		this.description = description;
+		this.created = created;
+		this.admin_id = admin_id;
+	}
 
 	@Override
 	public String toString() {
 		return "Plan [id=" + id + ", name=" + name + ", description=" + description + ", created=" + created +
 				", admin_id=" + admin_id + "]";
-	}
-
-	public Plan() {}
-
-	public Plan(int id, String name, String description, Date created, int admin_id) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.created = created;
-		this.admin_id = admin_id;
 	}
 
 	public int getId() {
