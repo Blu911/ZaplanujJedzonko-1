@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app/recipes">
+                <a class="nav-link" href="/app/recipe/list">
                     <span>Przepisy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -97,7 +97,7 @@
                 <div class="dashboard-alerts">
                     <div class="alert-item alert-info">
                         <i class="fas icon-circle fa-info-circle"></i>
-                        <span class="font-weight-bold">Liczba przepisów: 1</span>
+                        <span class="font-weight-bold">Liczba przepisów: ${countUserRecipes}</span>
                     </div>
                     <div class="alert-item alert-light">
                         <i class="far icon-calendar fa-calendar-alt"></i>

@@ -1,6 +1,5 @@
 package pl.coderslab.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Recipe {
@@ -9,16 +8,15 @@ public class Recipe {
     private String name;
     private String ingredients;
     private String description;
-
-
-
     private Timestamp created;
     private Timestamp updated;
     private int preparation_time;
     private int admin_id;
+    private String preparation;
+
     public Recipe() {}
 
-    public Recipe(String name, String ingredients, String description, Timestamp created, Timestamp updated, int preparation_time, int admin_id) {
+    public Recipe(String name, String ingredients, String description, Timestamp created, Timestamp updated, int preparation_time, int admin_id, String preparation) {
         this.name = name;
         this.ingredients = ingredients;
         this.description = description;
@@ -26,19 +24,35 @@ public class Recipe {
         this.updated = updated;
         this.preparation_time = preparation_time;
         this.admin_id = admin_id;
+        this.preparation = preparation;
+    }
+
+    public String getPreparation() {
+        return preparation;
+    }
+
+    public void setPreparation(String preparation) {
+        this.preparation = preparation;
     }
 
     @Override
     public String toString() {
-        return "Recipe [id=" + id + ", name=" + name + ", ingredients=" + ingredients + ", description=" + description + ", created=" + created + ", updated=" + updated +
-                ", preparation_time" + preparation_time + ", admin_id=" + admin_id + "]";
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", preparation_time=" + preparation_time +
+                ", admin_id=" + admin_id +
+                ", preparation='" + preparation + '\'' +
+                '}';
     }
 
     public String getIngredients() { return ingredients; }
 
     public void setIngredients(String ingredients) { this.ingredients = ingredients; }
-
-
 
     public int getPreparation_time() { return preparation_time; }
 
