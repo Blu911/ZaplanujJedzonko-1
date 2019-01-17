@@ -26,17 +26,16 @@ public class LoginServlet extends HttpServlet {
  *  If yes opening session and redirecting to Dashboard
  *  If not showing LoginPage**/
 
-        List<Admin> adminList = AdminDao.findAll();
+        Admin admin = AdminDao.verifyEmailAndPass(email, password);
 
-        for (Admin admin : adminList) {
-            if (Objects.equals(admin.getEmail(), email) && BCrypt.checkpw(password, admin.getPassword())) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", admin);
-                response.sendRedirect(request.getContextPath() + "/app/dashboard");
-                return;
-            }
+        if (!(admin == null)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", admin);
+            response.sendRedirect(request.getContextPath() + "/app/dashboard");
+            return;
+        } else {
+            doGet(request, response);
         }
-        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
