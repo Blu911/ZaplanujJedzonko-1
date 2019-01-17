@@ -20,12 +20,15 @@ public class RegistrationServlet extends HttpServlet {
         String lastName = request.getParameter("surname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String password2 = request.getParameter("password2");
 
-        Admin admin = new Admin(firstName, lastName, email, password, 1);
-        AdminDao.create(admin);
-        //getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-        response.sendRedirect(request.getContextPath() + "/login");
-        //doGet(request, response);
+        if (password == password2) {
+            Admin admin = new Admin(firstName, lastName, email, password, 1);
+            AdminDao.create(admin);
+            response.sendRedirect(request.getContextPath() + "/login");
+        } else {
+            getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

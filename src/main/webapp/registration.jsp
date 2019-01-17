@@ -39,7 +39,7 @@
                         <input type="text" class="form-control" id="password" name="password" placeholder="podaj hasło">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="password" name="password" placeholder="powtórz hasło">
+                        <input type="text" class="form-control" id="password2" name="password2" placeholder="powtórz hasło">
                     </div>
                     <button class="btn btn-color rounded-0" type="submit">Zarejestruj</button>
                 </form>
