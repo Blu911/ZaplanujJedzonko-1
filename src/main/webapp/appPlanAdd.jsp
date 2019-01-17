@@ -36,37 +36,37 @@
     <div class="row dashboard-nowrap">
         <ul class="nav flex-column long-bg">
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard.html">
+                <a class="nav-link" href="/app/dashboard">
                     <span>Pulpit</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app-recipes.html">
+                <a class="nav-link" href="/app/recipes">
                     <span>Przepisy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app-schedules.html">
+                <a class="nav-link" href="/app/schedules">
                     <span>Plany</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app-edit-user-data.html">
+                <a class="nav-link" href="/app/edit/user/data">
                     <span>Edytuj dane</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="/app-edit-password.html">
+                <a class="nav-link disabled" href="/app/edit/password">
                     <span>Zmień hasło</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/super-admin-users.html">
+                <a class="nav-link" href="/super/admin/users">
                     <span>Użytkownicy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -82,13 +82,14 @@
                 </div>
 
                 <div class="schedules-content">
+
                     <form method="post">
                         <div class="form-group row">
                             <label for="planName" class="col-sm-2 label-size col-form-label">
                                 Nazwa planu
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="planName" placeholder="Nazwa planu">
+                                <input type="text" class="form-control" id="planName" placeholder="Nazwa planu" name="planName">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -96,13 +97,14 @@
                                 Opis planu
                             </label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="planDescription" placeholder="Opis plany"></textarea>
+                                <textarea class="form-control" rows="5" id="planDescription" placeholder="Opis plany" name="planDescription"></textarea>
                             </div>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
                             <button class="btn btn-color rounded-0" type="submit">Zapisz</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
