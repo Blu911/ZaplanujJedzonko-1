@@ -17,8 +17,9 @@ public class RecipeDao {
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?";
-    private static final String UPDATE_RECIPE_QUERY = "UPDATE   recipe SET name = ?, ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, admin_id = ?, preparation = ? WHERE id = ?";
     private static final String COUNT_USER_RECIPES = "SELECT COUNT(*) FROM recipe WHERE recipe.admin_id = ?";
+    private static final String UPDATE_RECIPE_QUERY = "UPDATE   recipe SET name = ?, ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, admin_id = ?, preparation = ? WHERE id = ?";
+
 
     /**
      * Get recipe by id

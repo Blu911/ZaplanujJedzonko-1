@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class PlanDao {
@@ -20,6 +21,7 @@ public class PlanDao {
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE id = ?";
     private static final String COUNT_USER_PLANS = "SELECT COUNT(*) FROM plan WHERE plan.admin_id = ?";
+    private static final String GET_LAST_PLAN_ID_QUERY = "SELECT MAX(id) from plan WHERE admin_id = ?";
 
     /**
      * Get plan by id
@@ -166,4 +168,19 @@ public class PlanDao {
         return count;
     }
 
+    public static Plan readLast(int userId) {
+        int lastId = 0;
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_LAST_PLAN_ID_QUERY);) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    lastId = resultSet.getInt("MAX(id)");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return read(lastId);
+    }
 }
