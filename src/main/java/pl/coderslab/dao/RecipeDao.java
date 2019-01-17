@@ -13,7 +13,7 @@ import java.util.List;
 public class RecipeDao {
 
     // ZAPYTANIA SQL
-    private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name, ingredients, description, created, updated, preparation_time, admin_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name, ingredients, description, created, updated, preparation_time, admin_id, preparation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?";
@@ -42,6 +42,7 @@ public class RecipeDao {
                     recipe.setUpdated(resultSet.getTimestamp("updated"));
                     recipe.setPreparation_time(resultSet.getInt("preparation_time"));
                     recipe.setAdmin_id(resultSet.getInt("admin_id"));
+                    recipe.setPreparation(resultSet.getString("preparation"));
                 }
             }
 
@@ -72,6 +73,7 @@ public class RecipeDao {
                 recipeToAdd.setUpdated(resultSet.getTimestamp("updated"));
                 recipeToAdd.setPreparation_time(resultSet.getInt("preparation_time"));
                 recipeToAdd.setAdmin_id(resultSet.getInt("admin_id"));
+                recipeToAdd.setPreparation(resultSet.getString("preparation"));
                 recipeList.add(recipeToAdd);
             }
 
@@ -99,6 +101,7 @@ public class RecipeDao {
             insertStm.setTimestamp(5, recipe.getUpdated());
             insertStm.setInt(6, recipe.getPreparation_time());
             insertStm.setInt(7, recipe.getAdmin_id());
+            insertStm.setString(7, recipe.getPreparation());
             int result = insertStm.executeUpdate();
 
             if (result != 1) {
@@ -148,7 +151,7 @@ public class RecipeDao {
     public static void update(Recipe recipe) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_RECIPE_QUERY);) {
-            statement.setInt(8, recipe.getId());
+            statement.setInt(9, recipe.getId());
             statement.setString(1, recipe.getName());
             statement.setString(2, recipe.getIngredients());
             statement.setString(3, recipe.getDescription());
@@ -156,6 +159,7 @@ public class RecipeDao {
             statement.setTimestamp(5, recipe.getUpdated());
             statement.setInt(6, recipe.getPreparation_time());
             statement.setInt(7, recipe.getAdmin_id());
+            statement.setString(8, recipe.getPreparation());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
