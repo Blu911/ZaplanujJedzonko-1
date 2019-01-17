@@ -36,37 +36,37 @@
     <div class="row dashboard-nowrap">
         <ul class="nav flex-column long-bg">
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard.html">
+                <a class="nav-link" href="/app/dashboard">
                     <span>Pulpit</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app-recipes.html">
+                <a class="nav-link" href="/app/recipe/list">
                     <span>Przepisy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app-schedules.html">
+                <a class="nav-link" href="/app/schedules">
                     <span>Plany</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app-edit-user-data.html">
+                <a class="nav-link" href="/app/edit/user/data">
                     <span>Edytuj dane</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="/app-edit-password.html">
+                <a class="nav-link disabled" href="/app/edit/password">
                     <span>Zmień hasło</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/super-admin-users.html">
+                <a class="nav-link" href="/super/admin/users">
                     <span>Użytkownicy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -78,7 +78,7 @@
                 <div class="mt-4 ml-4 mr-4">
                     <div class="row border-bottom border-3">
                         <div class="col"><h3 class="color-header text-uppercase">Szczegóły przepisu</h3></div>
-                        <div class="col d-flex justify-content-end mb-2"><a href="/app-recipes.html" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
+                        <div class="col d-flex justify-content-end mb-2"><a href="/app/recipe/list" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a></div>
                     </div>
 
                     <table class="table borderless">
