@@ -36,10 +36,10 @@ public class RecipeDao {
                 while (resultSet.next()) {
                     recipe.setId(resultSet.getInt("id"));
                     recipe.setName(resultSet.getString("name"));
-                    recipe.setIngrediens(resultSet.getString("ingredients"));
+                    recipe.setIngredients(resultSet.getString("ingredients"));
                     recipe.setDescription(resultSet.getString("description"));
-                    recipe.setCreated(resultSet.getDate("created"));
-                    recipe.setUpdated(resultSet.getDate("updated"));
+                    recipe.setCreated(resultSet.getTimestamp("created"));
+                    recipe.setUpdated(resultSet.getTimestamp("updated"));
                     recipe.setPreparation_time(resultSet.getInt("preparation_time"));
                     recipe.setAdmin_id(resultSet.getInt("admin_id"));
                 }
@@ -66,10 +66,10 @@ public class RecipeDao {
                 Recipe recipeToAdd = new Recipe();
                 recipeToAdd.setId(resultSet.getInt("id"));
                 recipeToAdd.setName(resultSet.getString("name"));
-                recipeToAdd.setIngrediens(resultSet.getString("ingredients"));
+                recipeToAdd.setIngredients(resultSet.getString("ingredients"));
                 recipeToAdd.setDescription(resultSet.getString("description"));
-                recipeToAdd.setCreated(resultSet.getDate("created"));
-                recipeToAdd.setUpdated(resultSet.getDate("updated"));
+                recipeToAdd.setCreated(resultSet.getTimestamp("created"));
+                recipeToAdd.setUpdated(resultSet.getTimestamp("updated"));
                 recipeToAdd.setPreparation_time(resultSet.getInt("preparation_time"));
                 recipeToAdd.setAdmin_id(resultSet.getInt("admin_id"));
                 recipeList.add(recipeToAdd);
@@ -93,10 +93,10 @@ public class RecipeDao {
              PreparedStatement insertStm = connection.prepareStatement(CREATE_RECIPE_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             insertStm.setString(1, recipe.getName());
-            insertStm.setString(2, recipe.getIngrediens());
+            insertStm.setString(2, recipe.getIngredients());
             insertStm.setString(3, recipe.getDescription());
-            insertStm.setDate(4, recipe.getCreated());
-            insertStm.setDate(5, recipe.getUpdated());
+            insertStm.setTimestamp(4, recipe.getCreated());
+            insertStm.setTimestamp(5, recipe.getUpdated());
             insertStm.setInt(6, recipe.getPreparation_time());
             insertStm.setInt(7, recipe.getAdmin_id());
             int result = insertStm.executeUpdate();
@@ -131,8 +131,7 @@ public class RecipeDao {
             statement.setInt(1, recipeId);
             statement.executeUpdate();
 
-            boolean deleted = statement.execute();
-            if (!deleted) {
+            if (statement.executeUpdate() == 0) {
                 throw new NotFoundException("Recipe not found");
             }
 
@@ -151,10 +150,10 @@ public class RecipeDao {
              PreparedStatement statement = connection.prepareStatement(UPDATE_RECIPE_QUERY);) {
             statement.setInt(8, recipe.getId());
             statement.setString(1, recipe.getName());
-            statement.setString(2, recipe.getIngrediens());
+            statement.setString(2, recipe.getIngredients());
             statement.setString(3, recipe.getDescription());
-            statement.setDate(4, recipe.getCreated());
-            statement.setDate(5, recipe.getUpdated());
+            statement.setTimestamp(4, recipe.getCreated());
+            statement.setTimestamp(5, recipe.getUpdated());
             statement.setInt(6, recipe.getPreparation_time());
             statement.setInt(7, recipe.getAdmin_id());
             statement.executeUpdate();
