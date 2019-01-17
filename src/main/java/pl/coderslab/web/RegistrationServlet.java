@@ -1,7 +1,5 @@
 package pl.coderslab.web;
 
-
-import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.dao.AdminDao;
 import pl.coderslab.model.Admin;
 
@@ -12,34 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String firstName = request.getParameter("name");
+        String lastName = request.getParameter("surname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String password2 = request.getParameter("password2");
 
-/** Checking if inserted email and password is in database
- *  If yes opening session and redirecting to Dashboard
- *  If not showing LoginPage**/
-
-        Admin admin = AdminDao.verifyEmailAndPass(email, password);
-
-        if (!(admin == null)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", admin);
-            response.sendRedirect(request.getContextPath() + "/app/dashboard");
-            return;
+        if (password == password2) {
+            Admin admin = new Admin(firstName, lastName, email, password, 1);
+            AdminDao.create(admin);
+            response.sendRedirect(request.getContextPath() + "/login");
         } else {
-            doGet(request, response);
+            getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
     }
 }

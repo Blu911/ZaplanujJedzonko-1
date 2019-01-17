@@ -1,16 +1,19 @@
 package pl.coderslab.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Admin;
 import pl.coderslab.model.Book;
 import pl.coderslab.utils.DbUtil;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AdminDao {
 
@@ -158,5 +161,25 @@ public class AdminDao {
             e.printStackTrace();
         }
     }
+
+    /**
+     * VerifyEmailAndPass of admin
+     *
+     * @param email
+     * @param password
+     * @return
+     */
+
+    public static Admin verifyEmailAndPass(String email, String password) {
+        List<Admin> adminList = AdminDao.findAll();
+
+        for (Admin admin : adminList) {
+            if (Objects.equals(admin.getEmail(), email) && BCrypt.checkpw(password, admin.getPassword())) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
 
 }
