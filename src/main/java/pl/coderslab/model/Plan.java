@@ -1,17 +1,18 @@
 package pl.coderslab.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Plan {
 
 	private int id;
 	private String name;
 	private String description;
-	private Date created;
+	private Timestamp created;
 	private int admin_id;
 	public Plan() {}
 
-	public Plan(String name, String description, Date created, int admin_id) {
+	public Plan(String name, String description, Timestamp created, int admin_id) {
 		this.name = name;
 		this.description = description;
 		this.created = created;
@@ -48,11 +49,11 @@ public class Plan {
 		this.description = description;
 	}
 
-	public Date getCreated() {
+	public Timestamp getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
 
