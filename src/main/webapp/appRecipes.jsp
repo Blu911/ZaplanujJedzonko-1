@@ -81,14 +81,20 @@
                     <div class="col noPadding d-flex justify-content-end mb-2"><a href="/app-add-recipe.html" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a></div>
                 </div>
                 <table class="table border-bottom schedules-content">
+                    <c:forEach var="recipes" items="${recipe}">
                     <thead>
                     <tr class="d-flex text-color-darker">
-                        <th scope="col" class="col-1">ID</th>
-                        <th scope="col" class="col-2">NAZWA</th>
-                        <th scope="col" class="col-7">OPIS</th>
-                        <th scope="col" class="col-2 center">AKCJE</th>
+                        <th scope="col" class="col-1">${recipes.id}</th>
+                        <th scope="col" class="col-2">${recipes.name}</th>
+                        <th scope="col" class="col-7">${recipes.description}</th>
+                        <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
+                            <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                            <a href="/app-recipe-details.html" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                            <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                        </td>
                     </tr>
                     </thead>
+                    </c:forEach>
                     <tbody class="text-color-lighter">
                     <tr class="d-flex">
                         <th scope="row" class="col-1">1</th>
