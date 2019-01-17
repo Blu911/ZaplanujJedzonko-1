@@ -2,6 +2,7 @@ package pl.coderslab.web;
 
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
 import pl.coderslab.model.Recipe;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 
 @WebServlet("/app/plan/add")
-public class AddScheduleServlet extends HttpServlet {
+public class PlanAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
@@ -23,9 +24,9 @@ public class AddScheduleServlet extends HttpServlet {
 		String name = request.getParameter("planName");
 		String description = request.getParameter("planDescription");
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		int adminId = (int) session.getAttribute("user_id");
+		Admin user = (Admin) session.getAttribute("user");
 
-		PlanDao.create(new Plan(name, description, timestamp, adminId));
+		PlanDao.create(new Plan(name, description, timestamp, user.getId()));
 		response.sendRedirect(request.getContextPath() + "/app/plan/list");
 
 	}
