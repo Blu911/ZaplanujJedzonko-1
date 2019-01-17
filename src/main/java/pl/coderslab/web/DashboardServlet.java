@@ -19,7 +19,7 @@ public class DashboardServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sess = request.getSession();
-        request.setAttribute("countPlans", PlanDao.countPlans(((Admin)sess.getAttribute("user")).getId()));
+        request.setAttribute("countUserPlans", PlanDao.countUserPlans(((Admin)sess.getAttribute("user")).getId()));
         getServletContext().getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 }

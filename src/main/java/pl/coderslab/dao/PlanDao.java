@@ -19,7 +19,7 @@ public class PlanDao {
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE id = ?";
-    private static final String GET_USER_PLANS_QUERY = "SELECT COUNT(*) FROM scrumlab.plan WHERE scrumlab.plan.admin_id = ?";
+    private static final String COUNT_USER_PLANS = "SELECT COUNT(*) FROM scrumlab.plan WHERE scrumlab.plan.admin_id = ?";
 
     /**
      * Get plan by id
@@ -150,10 +150,10 @@ public class PlanDao {
         }
     }
 
-    public static int countPlans(int userId) {
+    public static int countUserPlans(int userId) {
         int count = 0;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(GET_USER_PLANS_QUERY);) {
+             PreparedStatement statement = connection.prepareStatement(COUNT_USER_PLANS);) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
