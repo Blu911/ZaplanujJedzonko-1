@@ -30,10 +30,10 @@ public class RecipeAddServlet extends HttpServlet {
         String ingredients = request.getParameter("ingredients");
 
         HttpSession session = request.getSession();
-        int userId = (int) session.getAttribute("user_id");
+        Admin user = (Admin) session.getAttribute("user");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        RecipeDao.create(new Recipe(name, ingredients, description, timestamp, timestamp, preparationTime, userId));
+        RecipeDao.create(new Recipe(name, ingredients, description, timestamp, timestamp, preparationTime, user.getId()));
         response.sendRedirect(request.getContextPath() + "/app/recipes");
     }
 

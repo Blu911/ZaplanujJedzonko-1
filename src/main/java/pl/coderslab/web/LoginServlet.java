@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
         for (Admin admin : adminList) {
             if (Objects.equals(admin.getEmail(), email) && BCrypt.checkpw(password, admin.getPassword())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("user_id", admin.getId());
+                session.setAttribute("user", admin);
                 response.sendRedirect(request.getContextPath() + "/app/dashboard");
                 return;
             }
