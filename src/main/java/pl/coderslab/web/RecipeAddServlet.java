@@ -33,8 +33,9 @@ public class RecipeAddServlet extends HttpServlet {
         Admin user = (Admin) session.getAttribute("user");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        RecipeDao.create(new Recipe(name, ingredients, description, timestamp, timestamp, preparationTime, user.getId()));
-        response.sendRedirect(request.getContextPath() + "/app/recipes");
+        RecipeDao.create(new Recipe(name, ingredients, description, timestamp, timestamp, preparationTime, user.getId(), preparation));
+
+        response.sendRedirect(request.getContextPath() + "/app/recipe/list");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
