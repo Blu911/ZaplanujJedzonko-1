@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class PlanDao {
@@ -20,6 +19,7 @@ public class PlanDao {
     private static final String CREATE_PLAN_QUERY = "INSERT INTO plan(name, description, created, admin_id) VALUES (?, ?, ?, ?)";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?";
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan";
+    private static final String FIND_PLANS_DESC_QUERY = "SELECT * FROM plan ORDER BY created DESC";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE id = ?";
     private static final String COUNT_USER_PLANS = "SELECT COUNT(*) FROM plan WHERE plan.admin_id = ?";
@@ -31,6 +31,39 @@ public class PlanDao {
             "JOIN recipe on recipe.id=recipe_id WHERE " +
             "plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?) " +
             "ORDER by day_name.order, recipe_plan.order";
+
+    private static final String READ_PLAN_BY_ADMIN_ID_QUERY = "SELECT * from plan where admin_id = ?";
+
+    /**
+     * Get plan by admin_id
+     *
+     * @param adminId
+     * @return
+     */
+    public static List<Plan> findAllByAdminId(Integer adminId) {
+        List<Plan> planList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(READ_PLAN_BY_ADMIN_ID_QUERY)) {
+
+            statement.setInt(1, adminId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Plan planToAdd = new Plan();
+                    planToAdd.setId(resultSet.getInt("id"));
+                    planToAdd.setName(resultSet.getString("name"));
+                    planToAdd.setDescription(resultSet.getString("description"));
+                    planToAdd.setCreated(resultSet.getTimestamp("created"));
+                    planToAdd.setAdmin_id(resultSet.getInt("admin_id"));
+                    planList.add(planToAdd);
+                }
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return planList;
+    }
+
 
     /**
      * Get plan by id
@@ -222,5 +255,28 @@ public class PlanDao {
         planWithDetails.setCreated(plan.getCreated());
         planWithDetails.setAdmin_id(plan.getAdmin_id());
         return planWithDetails;
+    }
+
+    public static List<Plan> findAllDESC() {
+        List<Plan> planList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_PLANS_DESC_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Plan planToAdd = new Plan();
+                planToAdd.setId(resultSet.getInt("id"));
+                planToAdd.setName(resultSet.getString("name"));
+                planToAdd.setDescription(resultSet.getString("description"));
+                planToAdd.setCreated(resultSet.getTimestamp("created"));
+                planToAdd.setAdmin_id(resultSet.getInt("admin_id"));
+                planList.add(planToAdd);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return planList;
+
     }
 }
