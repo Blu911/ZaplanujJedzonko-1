@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app/recipes">
+                <a class="nav-link" href="/app/recipe/lists">
                     <span>Przepisy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
