@@ -64,13 +64,14 @@
 
         <div class="m-4 p-3 width-medium">
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
+
                 <form action="/app/recipe/plan/add" method="post">
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding">
                         <h3 class="color-header text-uppercase">DODAJ PRZEPIS DO PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <a href="#" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</a>
+                        <a href="" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz</a>
                     </div>
                 </div>
 
@@ -101,7 +102,7 @@
                                 Numer posiłku
                             </label>
                             <div class="col-sm-2">
-                                <input type="number" class="form-control" value="" id="number" placeholder="Numer posiłki">
+                                <input type="number" min="1" class="form-control" value="" id="number" placeholder="Numer posiłki">
                             </div>
                         </div>
                         <div class="form-group row">
