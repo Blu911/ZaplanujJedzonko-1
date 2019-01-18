@@ -99,7 +99,7 @@
 
                                 <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                     <form action="/app/recipe/details">
-                                        <input type="hidden" id="${recipes.id}" name="recipeId" value="${recipes.id}">
+                                        <input type="hidden" name="recipeId" value="${recipes.id}">
                                         <button class="btn btn-info rounded-0 text-light m-1" type="submit">Szczegóły</button>
                                     </form>
                                 <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1" name="">Edytuj</a>

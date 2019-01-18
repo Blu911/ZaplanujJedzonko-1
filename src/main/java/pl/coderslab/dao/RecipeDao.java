@@ -17,8 +17,44 @@ public class RecipeDao {
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?";
+    private static final String READ_RECIPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?";
     private static final String COUNT_USER_RECIPES = "SELECT COUNT(*) FROM recipe WHERE recipe.admin_id = ?";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE   recipe SET name = ?, ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, admin_id = ?, preparation = ? WHERE id = ?";
+
+/**
+ * Get recipe by admin_id
+ *
+ * @param adminId
+ * @return
+ */
+public static List<Recipe> findAllByAdminId(Integer adminId) {
+    List<Recipe> recipeList = new ArrayList<>();
+    try (Connection connection = DbUtil.getConnection();
+         PreparedStatement statement = connection.prepareStatement(READ_RECIPE_BY_ADMIN_ID_QUERY)) {
+
+        statement.setInt(1, adminId);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Recipe recipeToAdd = new Recipe();
+                recipeToAdd.setId(resultSet.getInt("id"));
+                recipeToAdd.setName(resultSet.getString("name"));
+                recipeToAdd.setIngredients(resultSet.getString("ingredients"));
+                recipeToAdd.setDescription(resultSet.getString("description"));
+                recipeToAdd.setCreated(resultSet.getTimestamp("created"));
+                recipeToAdd.setUpdated(resultSet.getTimestamp("updated"));
+                recipeToAdd.setPreparation_time(resultSet.getInt("preparation_time"));
+                recipeToAdd.setAdmin_id(resultSet.getInt("admin_id"));
+                recipeToAdd.setPreparation(resultSet.getString("preparation"));
+                recipeList.add(recipeToAdd);
+            }
+        }
+
+    } catch(Exception e){
+        e.printStackTrace();
+    }
+    return recipeList;
+}
+
 
 
     /**
