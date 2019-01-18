@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app/recipes">
+                <a class="nav-link" href="/app/recipe/list">
                     <span>Przepisy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -54,19 +54,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app/edit/user/data">
+                <a class="nav-link" href="">
                     <span>Edytuj dane</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="/app/edit/password">
+                <a class="nav-link disabled" href="">
                     <span>Zmień hasło</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/super/admin/users">
+                <a class="nav-link" href="">
                     <span>Użytkownicy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -101,7 +101,7 @@
                                 <th scope="col" class="col-2">${plans.name}</th>
                                 <th scope="col" class="col-7">${plans.description}</th>
                                 <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                                    <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                    <a href="" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                     <a href="/app/plan/details?plan_id=${plans.id}" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                     <a href="/app/plan/edit?plan_id=${plans.id}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                                 </td>

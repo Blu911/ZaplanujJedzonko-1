@@ -54,19 +54,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app/edit/user/data">
+                <a class="nav-link" href="">
                     <span>Edytuj dane</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="/app/edit/password">
+                <a class="nav-link disabled" href="">
                     <span>Zmień hasło</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/super/admin/users">
+                <a class="nav-link" href="">
                     <span>Użytkownicy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -97,12 +97,12 @@
                             <th scope="col" class="col-7">${recipes.description}</th>
                             <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
 
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                <a href="" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                     <form action="/app/recipe/details">
                                         <input type="hidden" name="recipeId" value="${recipes.id}">
                                         <button class="btn btn-info rounded-0 text-light m-1" type="submit">Szczegóły</button>
                                     </form>
-                                <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1" name="">Edytuj</a>
+                                <a href="" class="btn btn-warning rounded-0 text-light m-1" name="">Edytuj</a>
 
 
                             </td>
