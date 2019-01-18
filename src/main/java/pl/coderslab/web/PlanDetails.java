@@ -1,6 +1,7 @@
 package pl.coderslab.web;
 
 import pl.coderslab.dao.PlanDao;
+import pl.coderslab.model.Admin;
 import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
@@ -14,9 +15,7 @@ import java.io.IOException;
 @WebServlet("/app/plan/details")
 public class PlanDetails extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
-        int planId = Integer.parseInt(request.getParameter("plan_id"));
 
     }
 
@@ -25,6 +24,10 @@ public class PlanDetails extends HttpServlet {
         Plan plan = PlanDao.read(planId);
 
         request.setAttribute("plan", plan);
+
+        HttpSession session = request.getSession();
+        int userId = ((Admin) session.getAttribute("user")).getId();
+        request.setAttribute("planWithDetails", PlanDao.getPlanWithDetails(userId, planId));
 
         getServletContext().getRequestDispatcher("/appPlanDetails.jsp").forward(request, response);
     }
