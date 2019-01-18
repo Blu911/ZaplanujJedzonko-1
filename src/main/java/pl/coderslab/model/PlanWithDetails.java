@@ -1,9 +1,7 @@
 package pl.coderslab.model;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class PlanWithDetails extends Plan {
     //Dziedziczy po Plan i dodaje szczegóły planu

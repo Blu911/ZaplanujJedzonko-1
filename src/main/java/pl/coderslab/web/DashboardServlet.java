@@ -24,6 +24,9 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("countUserRecipes", RecipeDao.countUserRecipes(userId));
         request.setAttribute("countUserPlans", PlanDao.countUserPlans(userId));
         request.setAttribute("planWithDetails", PlanDao.getPlanWithDetails(userId, PlanDao.readLast(userId).getId()));
+
+
+
         getServletContext().getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 }
