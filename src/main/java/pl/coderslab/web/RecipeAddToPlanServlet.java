@@ -27,7 +27,7 @@ public class RecipeAddToPlanServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Admin user = (Admin) session.getAttribute("user");
         request.setAttribute("recipe", RecipeDao.findAllByAdminId(user.getId()));
-        //request.setAttribute("plan", PlanDao.findAllByAdminId(user.getId()));
+        request.setAttribute("plan", PlanDao.findAllByAdminId(user.getId()));
         request.setAttribute("day", DayNameDao.findAll());
         getServletContext().getRequestDispatcher("/appSchedulesMealRecipe.jsp").forward(request, response);
     }
