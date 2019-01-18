@@ -1,13 +1,17 @@
 package pl.coderslab.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlanWithDetails extends Plan {
     //Dziedziczy po Plan i dodaje szczegóły planu
     private List<PlanDetail> planDetailList;
 
-    public PlanWithDetails(){}
+    public PlanWithDetails(){
+        this.planDetailList = new ArrayList<>();
+    }
 
     public PlanWithDetails(String name, String description, Timestamp created, int admin_id, List<PlanDetail> planDetailList) {
         super(name, description, created, admin_id);
@@ -24,5 +28,15 @@ public class PlanWithDetails extends Plan {
 
     public void addPlanDetail(PlanDetail planDetail) {
         this.planDetailList.add(planDetail);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (PlanDetail planDetail : this.planDetailList) {
+            sb.append(planDetail.toString() + "\n");
+        }
+        return "{Plan [id=" + super.getId() + ", name=" + super.getName() + ", description=" + super.getDescription() + ", created=" + super.getCreated() +
+                ", admin_id=" + super.getAdmin_id() + "]\n" + sb.toString() + "}";
     }
 }

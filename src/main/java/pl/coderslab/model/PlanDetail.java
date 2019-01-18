@@ -47,4 +47,9 @@ public class PlanDetail {
     public void setRecipeDescription(String recipeDescription) {
         this.recipeDescription = recipeDescription;
     }
+
+    @Override
+    public String toString() {
+        return "PlanDetail [" + "dayName=" + this.dayName + ", mealName=" + this.mealName + ", recipeName=" + this.recipeName + ", recipeDescription=" + recipeDescription + "]";
+    }
 }

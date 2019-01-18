@@ -2,6 +2,8 @@ package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Plan;
+import pl.coderslab.model.PlanDetail;
+import pl.coderslab.model.PlanWithDetails;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -22,6 +24,13 @@ public class PlanDao {
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE id = ?";
     private static final String COUNT_USER_PLANS = "SELECT COUNT(*) FROM plan WHERE plan.admin_id = ?";
     private static final String GET_LAST_PLAN_ID_QUERY = "SELECT MAX(id) from plan WHERE admin_id = ?";
+    private static final String GET_PLAN_DETAILS_QUERY = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, " +
+            "recipe.description as recipe_description " +
+            "FROM `recipe_plan` " +
+            "JOIN day_name on day_name.id=day_name_id " +
+            "JOIN recipe on recipe.id=recipe_id WHERE " +
+            "day_name_id =  (SELECT MAX(id) from plan WHERE admin_id = ?) " +
+            "ORDER by day_name.order, recipe_plan.order";
 
     /**
      * Get plan by id
@@ -182,5 +191,36 @@ public class PlanDao {
             e.printStackTrace();
         }
         return read(lastId);
+    }
+
+    public static PlanWithDetails getPlanWithDetails(int userId, int planId) {
+        Plan plan = read(planId);
+        PlanWithDetails planWithDetails = new PlanWithDetails();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_PLAN_DETAILS_QUERY);) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    PlanDetail detailToAdd = new PlanDetail();
+                    String dayName = resultSet.getString("day_name");
+                    detailToAdd.setDayName(dayName);
+                    String mealName = resultSet.getString("meal_name");
+                    detailToAdd.setMealName(mealName);
+                    String recipeName = resultSet.getString("recipe_name");
+                    detailToAdd.setRecipeName(recipeName);
+                    String recipeDescription = resultSet.getString("recipe_description");
+                    detailToAdd.setRecipeDescription(recipeDescription);
+                    planWithDetails.addPlanDetail(detailToAdd);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        planWithDetails.setId(plan.getId());
+        planWithDetails.setName(plan.getName());
+        planWithDetails.setDescription(plan.getDescription());
+        planWithDetails.setCreated(plan.getCreated());
+        planWithDetails.setAdmin_id(plan.getAdmin_id());
+        return planWithDetails;
     }
 }
