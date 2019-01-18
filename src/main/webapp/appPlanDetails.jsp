@@ -128,7 +128,7 @@
                                     <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                 </td>
                                 <td class="col-2 center">
-                                    <a href="/app/recipe/details" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                    <a href="" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                 </td>
                             </tr>
                         </c:when>
@@ -137,10 +137,10 @@
                                 <td class="col-2">${planDetail.mealName}</td>
                                 <td class="col-7">${planDetail.recipeName}</td>
                                 <td class="col-1 center">
-                                    <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                    <a href="" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                 </td>
                                 <td class="col-2 center">
-                                    <a href="/app/recipe/details" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                    <a href="" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                 </td>
                             </tr>
                         </c:otherwise>
