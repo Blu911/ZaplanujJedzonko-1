@@ -97,12 +97,12 @@
                             <th scope="col" class="col-7">${recipes.description}</th>
                             <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
 
-                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                <a href="" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                     <form action="/app/recipe/details">
                                         <input type="hidden" name="recipeId" value="${recipes.id}">
                                         <button class="btn btn-info rounded-0 text-light m-1" type="submit">Szczegóły</button>
                                     </form>
-                                <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1" name="">Edytuj</a>
+                                <a href="" class="btn btn-warning rounded-0 text-light m-1" name="">Edytuj</a>
 
 
                             </td>
