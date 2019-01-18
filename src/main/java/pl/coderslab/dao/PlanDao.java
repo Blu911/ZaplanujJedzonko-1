@@ -17,7 +17,7 @@ public class PlanDao {
     private static final String CREATE_PLAN_QUERY = "INSERT INTO plan(name, description, created, admin_id) VALUES (?, ?, ?, ?)";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?";
     private static final String FIND_ALL_PLANS_QUERY = "SELECT * FROM plan";
-    private static final String FIND_PLANS_ASC_QUERY = "SELECT * FROM plan ORDER BY created ASC";
+    private static final String FIND_PLANS_ASC_QUERY = "SELECT * FROM plan ORDER BY created DESC";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE id = ?";
     private static final String COUNT_USER_PLANS = "SELECT COUNT(*) FROM plan WHERE plan.admin_id = ?";
