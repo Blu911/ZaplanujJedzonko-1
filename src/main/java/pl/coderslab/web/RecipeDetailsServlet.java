@@ -22,11 +22,11 @@ public class RecipeDetailsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        Admin user = (Admin) session.getAttribute("user");
-        List<Recipe> recipeList = RecipeDao.findAll();
+        int recipeId = Integer.parseInt(request.getParameter("recipeId"));
+        Recipe recipe = RecipeDao.read(recipeId);
 
-
-
+        request.setAttribute("recipe", recipe);
+        getServletContext().getRequestDispatcher("/appRecipeDetails.jsp")
+                .forward(request, response);
     }
 }

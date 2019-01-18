@@ -102,7 +102,7 @@ public class RecipeDao {
             insertStm.setTimestamp(5, recipe.getUpdated());
             insertStm.setInt(6, recipe.getPreparation_time());
             insertStm.setInt(7, recipe.getAdmin_id());
-            insertStm.setString(7, recipe.getPreparation());
+            insertStm.setString(8, recipe.getPreparation());
             int result = insertStm.executeUpdate();
 
             if (result != 1) {
