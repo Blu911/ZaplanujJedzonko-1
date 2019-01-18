@@ -4,6 +4,7 @@ import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Plan;
 import pl.coderslab.model.PlanDetail;
 import pl.coderslab.model.PlanWithDetails;
+import pl.coderslab.model.PlanWithMeals;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -33,6 +34,52 @@ public class PlanDao {
             "ORDER by day_name.order, recipe_plan.order";
 
     private static final String READ_PLAN_BY_ADMIN_ID_QUERY = "SELECT * from plan where admin_id = ?";
+
+    /**Moje rozwiązanie - Krystian**/
+    private static final String GET_PLAN_DETAILS_QUERY2 = "SELECT recipe_plan.id, day_name.name as day_name, meal_name,  " +
+            "recipe.name as recipe_name, " +
+            "recipe.description as recipe_description, " +
+            "recipe.id as recipe_id, " +
+            "recipe_plan.order " +
+            "FROM `recipe_plan` " +
+            "JOIN day_name on day_name.id=day_name_id " +
+            "JOIN recipe on recipe.id=recipe_id WHERE admin_id = ?" +
+            "ORDER by day_name.order, recipe_plan.order";
+
+    /**
+     * Get PlanWithMeals by admin_id
+     *
+     * @param adminId
+     * @return
+     */
+
+    public static List<PlanWithMeals> getAllPlanWithMealsByAdminId(Integer adminId) {
+        List<PlanWithMeals> planWithMeals = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(GET_PLAN_DETAILS_QUERY2)) {
+
+            statement.setInt(1, adminId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    PlanWithMeals planWithMealsToAdd = new PlanWithMeals();
+                    planWithMealsToAdd.setId(resultSet.getInt("id"));
+                    planWithMealsToAdd.setDay_name(resultSet.getString("day_name"));
+                    planWithMealsToAdd.setMeal_name(resultSet.getString("meal_name"));
+                    planWithMealsToAdd.setRecipe_name(resultSet.getString("recipe_name"));
+                    planWithMealsToAdd.setRecipe_description(resultSet.getString("recipe_description"));
+                    planWithMealsToAdd.setRecipe_id(resultSet.getInt("recipe_id"));
+                    planWithMealsToAdd.setOrder(resultSet.getInt("order"));
+                    planWithMeals.add(planWithMealsToAdd);
+                }
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return planWithMeals;
+    }
+
+
 
     /**
      * Get plan by admin_id
