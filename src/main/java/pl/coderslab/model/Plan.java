@@ -10,9 +10,18 @@ public class Plan {
 	private String description;
 	private Timestamp created;
 	private int admin_id;
+
 	public Plan() {}
 
 	public Plan(String name, String description, Timestamp created, int admin_id) {
+		this.name = name;
+		this.description = description;
+		this.created = created;
+		this.admin_id = admin_id;
+	}
+
+	public Plan(int id, String name, String description, Timestamp created, int admin_id) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.created = created;

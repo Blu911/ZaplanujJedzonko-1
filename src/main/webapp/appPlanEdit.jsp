@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Add Recipe</title>
+    <title>Edit Plan</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -36,13 +36,13 @@
     <div class="row dashboard-nowrap">
         <ul class="nav flex-column long-bg">
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard.html">
+                <a class="nav-link" href="/app/dashboard">
                     <span>Pulpit</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/app/recipes">
+                <a class="nav-link" href="/app/recipe/list">
                     <span>Przepisy</span>
                     <i class="fas fa-angle-right"></i>
                 </a>
@@ -73,42 +73,41 @@
             </li>
         </ul>
 
+
         <div class="m-4 p-3 width-medium">
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding">
-                        <h3 class="color-header text-uppercase">LISTA PLANÓW</h3>
-                    </div>
-                    <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <a href="/app/plan/add" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj plan</a>
+                        <h3 class="color-header text-uppercase">EDYCJA PLANU</h3>
                     </div>
                 </div>
 
                 <div class="schedules-content">
-                    <table class="table border-bottom">
-                        <thead>
-                        <tr class="d-flex">
-                            <th class="col-1">ID</th>
-                            <th class="col-2">NAZWA</th>
-                            <th class="col-7">OPIS</th>
-                            <th class="col-2 center">AKCJE</th>
-                        </tr>
-                        </thead>
-                        <c:forEach var="plans" items="${plan}">
-                            <tbody class="text-color-lighter">
-                            <tr class="d-flex">
-                                <th scope="col" class="col-1">${plans.id}</th>
-                                <th scope="col" class="col-2">${plans.name}</th>
-                                <th scope="col" class="col-7">${plans.description}</th>
-                                <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                                    <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                    <a href="/app-recipe-details.html" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                    <a href="/app/plan/edit?plan_id=${plans.id}" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </c:forEach>
-                    </table>
+
+
+                    <form method="post">
+                        <div class="form-group row">
+                            <label for="planName" class="col-sm-2 label-size col-form-label">
+                                Nazwa planu
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="${plan.name}" id="planName" name="planName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="planDescription" class="col-sm-2 label-size col-form-label">
+                                Opis planu
+                            </label>
+                            <div class="col-sm-10">
+                                    <textarea class="form-control" rows="5" id="planDescription" name="planDescription">${plan.description}</textarea>
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-end mb-2 noPadding">
+                            <button class="btn btn-color rounded-0" type="submit">Zapisz</button>
+                        </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>
