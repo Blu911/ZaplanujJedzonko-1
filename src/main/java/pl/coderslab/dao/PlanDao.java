@@ -154,7 +154,7 @@ public class PlanDao {
      *
      * @param planId
      */
-    public static void delete(Integer planId) {
+    public static void delete(int planId) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PLAN_QUERY);) {
             statement.setInt(1, planId);
