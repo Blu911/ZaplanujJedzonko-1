@@ -9,3 +9,4 @@ Celem projektu jest stworzenie miejsca, w którym każdy będzie mógł zaplanow
 * MySQL
 * Maven
 * Tomcat
+* Gitflow
